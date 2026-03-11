@@ -1,19 +1,27 @@
 /* GoalCard.css */
 
+/* Busca .goal-card en tu GoalCard.css y déjalo así: */
 .goal-card {
   display: flex;
-  width: 100%;           /* Ocupa el ancho disponible */
-  max-width: 450px;      /* Pero no pasa de 450px */
-  min-height: 160px;     /* Crece si hay asistencia, pero mantiene altura base */
+  /* width: 100%; <--- Bórralo, interfiere con Flexbox */
+  /* max-width: 450px; <--- Bórralo de aquí, lo controlaremos mejor */
+  
+  /* NUEVO: Le dice "Mide 420px idealmente, no crezcas, pero encoge si es necesario" */
+  flex: 0 1 420px; 
+  
+  min-height: 160px; 
   background-color: #fff;
   border-radius: 12px;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
   overflow: hidden;
-  border-left: 6px solid #004D99; /* Azul Chivas */
+  border-left: 6px solid #004D99; 
   position: relative;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  margin: 20px auto;
+  
+  /* margin: 20px auto; <--- Bórralo. El 'gap' del App.css ya hace el espaciado */
+  
   transition: transform 0.2s ease;
+  box-sizing: border-box; /* CRUCIAL: Para que los bordes no sumen ancho extra */
 }
 
 .goal-card:hover {
@@ -131,19 +139,45 @@
 }
 
 /* Ajuste Responsivo para pantallas muy pequeñas (iPhone SE, etc) */
-@media (max-width: 400px) {
+/* Ajuste Responsivo para Móviles (Manteniendo el diseño horizontal) */
+@media (max-width: 600px) {
   .goal-card {
-    flex-direction: column;
-    max-width: 100%;
+    /* Mantenemos el diseño horizontal */
+    flex-direction: row; 
+    width: 100%;
+    min-height: 120px; /* Reducimos un poco la altura mínima */
   }
+
   .card-photo {
-    width: 100%;
-    height: 180px; /* Altura fija para la foto en móvil */
+    width: 100px; /* Hacemos la foto un poco más angosta para dar espacio al texto */
   }
-  .card-accent {
-    width: 100%;
-    height: 4px;
-    bottom: 0;
-    top: auto;
+
+  .card-content {
+    padding: 8px 12px; /* Reducimos el relleno interior */
+  }
+
+  /* Ajustamos los tamaños de texto para que no se desborden */
+  .card-header h3 {
+    font-size: 1rem; 
+  }
+
+  .minute {
+    font-size: 1.1rem;
+  }
+
+  .card-details p {
+    font-size: 0.8rem;
+  }
+
+  /* Ajustamos el triángulo del dorsal para que no se vea gigante */
+  .dorsal-tag {
+    width: 45px;
+    height: 45px;
+  }
+
+  .dorsal-tag span {
+    font-size: 0.9rem;
+    padding-top: 2px;
+    padding-right: 3px;
   }
 }

@@ -1,55 +1,73 @@
+/* Limpiamos el root para que las franjas ocupen todo el ancho */
 #root {
-  max-width: 1280px;
+  max-width: 100%;
   margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
-}
-
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
-}
-
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
-}
-
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
+  padding: 0; /* Quitamos el padding para que el color toque las orillas */
+  text-align: left;
 }
 
 body {
   margin: 0;
   padding: 0;
-  /* Evita el rebote elástico horizontal en móviles */
   overflow-x: hidden; 
+  background-color: #f5f5f5; /* Fondo general por si acaso */
 }
 
-/* Contenedor opcional para que las fichas no toquen los bordes del cel */
-.goal-card {
-  width: 95% !important; /* Ajusta el ancho para que respire en pantalla chica */
-  max-width: 450px;
+/* --- CLASES DE LA APP --- */
+
+.app-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #ffffff;
+}
+
+.header-title {
+  color: #004D99;
+  margin: 30px 0;
+}
+
+.matches-container {
+  width: 100%;
+}
+
+/* Contenedor de cada partido (La franja horizontal) */
+.match-section {
+  padding: 40px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  box-sizing: border-box; /* Evita que el padding rompa el 100% del ancho */
+}
+
+/* Colores cebra */
+.bg-gris-tenue {
+  background-color: #e0e0e0;
+}
+
+.bg-blanco-roto {
+  background-color: #FAFAFA;
+}
+
+/* 1. El contenedor ahora usa Grid para ser 100% responsivo */
+.cards-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center; /* Esto empuja TODAS las tarjetas al centro juntas */
+  gap: 30px; /* LA CLAVE: El espacio entre tarjetas SIEMPRE será de 30px, ni más ni menos */
+  width: 100%;
+  margin: 0 auto;
+  gap: 100px; /* Prueba subiéndolo de 30px a 40px o 50px */
+}
+
+
+/* Título opcional del partido */
+.match-title {
+  color: #555;
+  font-size: 1.1rem;
+  margin-bottom: 25px;
+  font-weight: 600;
 }

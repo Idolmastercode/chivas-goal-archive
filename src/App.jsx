@@ -1,81 +1,90 @@
 import React, { useMemo } from 'react';
 import GoalCard from './components/GoalCard';
 import golesData from './goles.json';
+import './App.css'; // <-- Importamos tu CSS
 
-// --- 1. FUNCIONES AUXILIARES (Van afuera para que no estorben) ---
-
-// Convierte "31/01/2026" a fecha real para que la compu entienda
+// --- FUNCIONES AUXILIARES ---
 const parseFecha = (fechaStr) => {
   const [dia, mes, anio] = fechaStr.split('/');
-  return new Date(anio, mes - 1, dia); // Recuerda: Mes 0 es Enero
+  return new Date(anio, mes - 1, dia); 
 };
 
-// Convierte "45+3" a 45.03 para poder ordenar matemáticamente
 const parseMinuto = (minutoStr) => {
   const str = String(minutoStr);
   if (str.includes('+')) {
     const [base, extra] = str.split('+');
-    // Ejemplo: "45+3" se vuelve 45.03. Así 46 es mayor que 45.03
     return parseInt(base) + (parseInt(extra) / 100);
   }
   return parseInt(str);
 };
 
-
-// --- 2. TU COMPONENTE PRINCIPAL ---
-
+// --- COMPONENTE PRINCIPAL ---
 function App() {
   
-  // Usamos useMemo: React guardará esta lista ordenada y no la reciclará a menos que cambie el JSON
-  const golesOrdenados = useMemo(() => {
-    return [...golesData].sort((a, b) => {
-      
-      // A) PRIMERO: Ordenar por Fecha (Del más nuevo al más viejo)
+  // Ordenamos y luego agrupamos los goles por partido
+  const partidosAgrupados = useMemo(() => {
+    // 1. Ordenar (Tu lógica intacta, está perfecta)
+    const golesOrdenados = [...golesData].sort((a, b) => {
       const fechaA = parseFecha(a.fecha);
       const fechaB = parseFecha(b.fecha);
-      
-      // Si las fechas son distintas, gana la fecha más reciente
-      if (fechaA.getTime() !== fechaB.getTime()) {
-        return fechaB - fechaA; 
-      }
-
-      // B) SEGUNDO: Si fue el mismo día, desempatar por Minuto
-      // (Para que el gol del min 90 salga arriba del min 10)
+      if (fechaA.getTime() !== fechaB.getTime()) return fechaB - fechaA; 
       return parseMinuto(b.minuto) - parseMinuto(a.minuto);
     });
-  }, []); // El array vacío [] significa "hazlo solo al cargar la página"
 
-  const containerStyle = {
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    padding: '20px',
-    backgroundColor: '#f5f5f5',
-    minHeight: '100vh',
-    fontFamily: "'Segoe UI', sans-serif"
-  };
+    // 2. Agrupar por partido
+    const grupos = [];
+    let partidoActualKey = "";
+
+    golesOrdenados.forEach((gol) => {
+      // Creamos un identificador único para cada partido
+      const llavePartido = `${gol.fecha}-${gol.partido}`;
+
+      if (llavePartido !== partidoActualKey) {
+        grupos.push({
+          id: llavePartido,
+          fecha: gol.fecha,
+          nombrePartido: gol.partido,
+          goles: [gol]
+        });
+        partidoActualKey = llavePartido;
+      } else {
+        grupos[grupos.length - 1].goles.push(gol);
+      }
+    });
+
+    return grupos;
+  }, []); 
 
   return (
-    <div style={containerStyle}>
-      <h2 style={{ color: '#004D99', marginBottom: '30px' }}>
+    <div className="app-container">
+      <h2 className="header-title">
         Historial de Goles 2026
       </h2>
 
-      {/* CONTENEDOR DE TARJETAS */}
-      <div
-        style={{
-          display: 'flex',
-          flexWrap: 'wrap',
-          gap: '20px',
-          justifyContent: 'center',
-          width: '100%'
-        }}
-      >
-        {golesOrdenados.map((gol) => (
-          <GoalCard key={gol.id} data={gol} />
-        ))}
+      {/* Contenedor principal de los partidos */}
+      <div className="matches-container">
+        {partidosAgrupados.map((partido, index) => {
+          
+          // Magia de la cebra: Alternamos clases en vez de colores en línea
+          const bgClass = index % 2 === 0 ? 'bg-gris-tenue' : 'bg-blanco-roto';
+
+          return (
+            <div key={partido.id} className={`match-section ${bgClass}`}>
+              
+              {/* Opcional: Un pequeño título discreto del partido para separar visualmente */}
+              {/* <h3 className="match-title">{partido.nombrePartido}</h3> */}
+
+              <div className="cards-wrapper">
+                {partido.goles.map((gol) => (
+                  <GoalCard key={gol.id} data={gol} />
+                ))}
+              </div>
+            </div>
+          );
+        })}
       </div>
     </div>
   );
 }
+
 export default App;
