@@ -10,7 +10,7 @@
     "fecha": "17/01/2026",
     "minuto": "61",
     "tipo": "normal",
-    "asistio": "Richy Ledezma"
+    "asistio": "Richard Ledezma"
   },
   {
     "id": 2,
@@ -27,9 +27,9 @@
   },
   {
     "id": 3,
-    "nombre": "Richy Ledezma",
+    "nombre": "Richard Ledezma",
     "dorsal": 37,
-    "foto": "images/richyledezma.jpg",
+    "foto": "images/richardledezma.jpg",
     "partido": "Atlético San Luis vs Guadalajara",
     "estadio": "Libertad Financiera",
     "competencia": "Liga MX, Clausura",
@@ -231,7 +231,7 @@
     "fecha": "08/11/2025",
     "minuto": "22",
     "tipo": "normal",
-    "asistio": "Richy Ledezma"
+    "asistio": "Richard Ledezma"
   },
   {
     "id": 19,
@@ -244,7 +244,7 @@
     "fecha": "08/11/2025",
     "minuto": "30",
     "tipo": "normal",
-    "asistio": "Richy Ledezma"
+    "asistio": "Richard Ledezma"
   },
   {
     "id": 20,
@@ -348,7 +348,7 @@
     "fecha": "18/10/2025",
     "minuto": "40",
     "tipo": "normal",
-    "asistio": "Richy Ledezma"
+    "asistio": "Richard Ledezma"
   },
   {
     "id": 28,
@@ -387,7 +387,7 @@
     "fecha": "27/09/2025",
     "minuto": "6",
     "tipo": "normal",
-    "asistio": "Richy Ledezma"
+    "asistio": "Richard Ledezma"
   },
   {
     "id": 31,
@@ -426,7 +426,7 @@
     "fecha": "23/09/2025",
     "minuto": "33",
     "tipo": "normal",
-    "asistio": "Richy Ledezma"
+    "asistio": "Richard Ledezma"
   },
   {
     "id": 34,
@@ -465,7 +465,7 @@
     "fecha": "14/03/2026",
     "minuto": "31",
     "tipo": "normal",
-    "asistio": "Richy Ledezma"
+    "asistio": "Richard Ledezma"
   },
   {
     "id": 37,
@@ -506,7 +506,7 @@
     "tipo": "normal",
     "asistio": "Efraín Álvarez"
   },
-    {
+  {
     "id": 40,
     "nombre": "Armando González",
     "dorsal": 34,
@@ -519,7 +519,7 @@
     "tipo": "PENAL",
     "asistio": null
   },
-    {
+  {
     "id": 41,
     "nombre": "Ángel Sepulveda",
     "dorsal": 20,
@@ -532,7 +532,7 @@
     "tipo": "normal",
     "asistio": null
   },
-    {
+  {
     "id": 42,
     "nombre": "Hugo Camberos",
     "dorsal": 26,
@@ -544,5 +544,44 @@
     "minuto": "90+9",
     "tipo": "normal",
     "asistio": null
+  },
+  {
+    "id": 43,
+    "nombre": "Armando González",
+    "dorsal": 34,
+    "foto": "images/armandogonzalez.jpg",
+    "partido": "Monterrey vs Guadalajara",
+    "estadio": "BBVA",
+    "competencia": "Liga MX, Apertura",
+    "fecha": "21/03/2026",
+    "minuto": "19",
+    "tipo": "normal",
+    "asistio": "Ángel Sepulveda"
+  },
+  {
+    "id": 44,
+    "nombre": "José Castillo",
+    "dorsal": 2,
+    "foto": "images/josecastillo.jpg",
+    "partido": "Monterrey vs Guadalajara",
+    "estadio": "BBVA",
+    "competencia": "Liga MX, Apertura",
+    "fecha": "21/03/2026",
+    "minuto": "47",
+    "tipo": "normal",
+    "asistio": "Bryan González"
+  },
+  {
+    "id": 45,
+    "nombre": "Bryan González",
+    "dorsal": 5,
+    "foto": "images/bryangonzalez.jpg",
+    "partido": "Monterrey vs Guadalajara",
+    "estadio": "BBVA",
+    "competencia": "Liga MX, Apertura",
+    "fecha": "21/03/2026",
+    "minuto": "56",
+    "tipo": "normal",
+    "asistio": "Richard Ledezma"
   }
 ]
