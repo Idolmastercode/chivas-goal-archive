@@ -583,5 +583,31 @@
     "minuto": "56",
     "tipo": "normal",
     "asistio": "Richard Ledezma"
+  },
+  {
+    "id": 46,
+    "nombre": "Armando González",
+    "dorsal": 34,
+    "foto": "images/armandogonzalez.jpg",
+    "partido": "Guadalajara vs UNAM",
+    "estadio": "Akron",
+    "competencia": "Liga MX, Apertura",
+    "fecha": "05/04/2026",
+    "minuto": "71",
+    "tipo": "normal",
+    "asistio": "Diego Campillo"
+  },
+  {
+    "id": 47,
+    "nombre": "Armando González",
+    "dorsal": 34,
+    "foto": "images/armandogonzalez.jpg",
+    "partido": "Guadalajara vs UNAM",
+    "estadio": "Akron",
+    "competencia": "Liga MX, Apertura",
+    "fecha": "05/04/2026",
+    "minuto": "90+12",
+    "tipo": "PENAL",
+    "asistio": null
   }
 ]
