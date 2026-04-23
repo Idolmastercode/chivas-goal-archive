@@ -56,9 +56,15 @@ function App() {
     <div className="App"> {/* 1. Usamos tu contenedor principal global */}
       
       {/* 2. ENCABEZADO ESTÁNDAR */}
+      {/* ENCABEZADO PRINCIPAL (AZUL) */}
       <header className="App-header">
         <h1>Historial de Goles 2026</h1>
       </header>
+
+      {/* FRANJA SECUNDARIA (ROJA - Igual de alta que la de Blue Archive) */}
+      <div className="App-subheader">
+        {/* Aquí puedes poner botones de filtro en el futuro, texto, o dejarla vacía */}
+      </div>
 
       {/* 3. CONTENIDO PRINCIPAL */}
       <main>
