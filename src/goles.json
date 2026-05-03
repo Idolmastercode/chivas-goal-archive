@@ -687,5 +687,18 @@
     "minuto": "85",
     "tipo": "normal",
     "asistio": "Santiago Sandoval"
+  },
+  {
+    "id": 54,
+    "nombre": "Ricardo Marín",
+    "dorsal": 17,
+    "foto": "images/ricardomarin.jpg",
+    "partido": "Tigres UANL vs Guadalajara",
+    "estadio": "Olímpico Universitario",
+    "competencia": "Liga MX, Apertura",
+    "fecha": "02/05/2026",
+    "minuto": "11",
+    "tipo": "normal",
+    "asistio": null
   }
 ]
