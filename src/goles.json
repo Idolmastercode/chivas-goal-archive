@@ -700,5 +700,32 @@
     "minuto": "11",
     "tipo": "normal",
     "asistio": null
+  },
+    {
+    "id": 55,
+    "nombre": "Roberto Alvadrado",
+    "dorsal": 25,
+    "foto": "images/robertoalvarado.jpg",
+    "partido": "América vs Guadalajara",
+    "estadio": "Ciudad de los Deportes",
+    "competencia": "Liga MX, Clausura",
+    "fecha": "13/09/2026",
+    "minuto": "63",
+    "tipo": "normal",
+    "asistio": "Érick Gutiérrez"
+  }
+  ,
+    {
+    "id": 56,
+    "nombre": "Armando González",
+    "dorsal": 34,
+    "foto": "images/armandogonzalez.jpg",
+    "partido": "América vs Guadalajara",
+    "estadio": "Ciudad de los Deportes",
+    "competencia": "Liga MX, Clausura",
+    "fecha": "13/09/2026",
+    "minuto": "88",
+    "tipo": "normal",
+    "asistio": null
   }
 ]
