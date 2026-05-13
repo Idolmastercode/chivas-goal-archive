@@ -701,7 +701,7 @@
     "tipo": "normal",
     "asistio": null
   },
-    {
+  {
     "id": 55,
     "nombre": "Roberto Alvadrado",
     "dorsal": 25,
@@ -709,13 +709,13 @@
     "partido": "América vs Guadalajara",
     "estadio": "Ciudad de los Deportes",
     "competencia": "Liga MX, Clausura",
-    "fecha": "13/09/2026",
+    "fecha": "13/09/2025",
     "minuto": "63",
     "tipo": "normal",
     "asistio": "Érick Gutiérrez"
   }
   ,
-    {
+  {
     "id": 56,
     "nombre": "Armando González",
     "dorsal": 34,
@@ -723,9 +723,35 @@
     "partido": "América vs Guadalajara",
     "estadio": "Ciudad de los Deportes",
     "competencia": "Liga MX, Clausura",
-    "fecha": "13/09/2026",
+    "fecha": "13/09/2025",
     "minuto": "88",
     "tipo": "normal",
     "asistio": null
+  },
+  {
+    "id": 57,
+    "nombre": "Santiago Sandoval",
+    "dorsal": 226,
+    "foto": "images/santiagosandoval.jpg",
+    "partido": "Guadalajara vs Tigres UANL",
+    "estadio": "Akron",
+    "competencia": "Liga MX, Clausura",
+    "fecha": "09/05/2026",
+    "minuto": "74",
+    "tipo": "normal",
+    "asistio": null
+  },
+  {
+    "id": 58,
+    "nombre": "Santiago Sandoval",
+    "dorsal": 226,
+    "foto": "images/santiagosandoval.jpg",
+    "partido": "Guadalajara vs Tigres UANL",
+    "estadio": "Akron",
+    "competencia": "Liga MX, Clausura",
+    "fecha": "09/05/2026",
+    "minuto": "77",
+    "tipo": "normal",
+    "asistio": "Omar Govea"
   }
 ]
