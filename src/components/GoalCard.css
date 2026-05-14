@@ -1,41 +1,39 @@
-/* GoalCard.css */
+:root {
+  --chivas-blue: #002956; 
+  --chivas-red: #cd0e2c;  
+}
 
-/* Busca .goal-card en tu GoalCard.css y déjalo así: */
 .goal-card {
   display: flex;
-  /* width: 100%; <--- Bórralo, interfiere con Flexbox */
-  /* max-width: 450px; <--- Bórralo de aquí, lo controlaremos mejor */
-  
-  /* NUEVO: Le dice "Mide 420px idealmente, no crezcas, pero encoge si es necesario" */
   flex: 0 1 420px; 
-  
-  height: 180px; 
+  min-height: 180px; 
+  height: auto;
   background-color: #fff;
   border-radius: 12px;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
   overflow: hidden;
-  border-left: 6px solid #002956; 
+  
+  /* ¡AQUÍ ESTÁ LA MAGIA DE LA SIMETRÍA! Ambos son bordes nativos */
+  border-left: 6px solid var(--chivas-blue); 
+  border-right: 6px solid var(--chivas-red); 
+  
   position: relative;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  
-  /* margin: 20px auto; <--- Bórralo. El 'gap' del App.css ya hace el espaciado */
-  
   transition: transform 0.2s ease;
-  box-sizing: border-box; /* CRUCIAL: Para que los bordes no sumen ancho extra */
+  box-sizing: border-box;
 }
 
 .goal-card:hover {
-  transform: translateY(-2px); /* Pequeño efecto al pasar el mouse */
+  transform: translateY(-2px);
 }
 
 /* --- SECCIÓN DE FOTO Y DORSAL --- */
-
 .card-photo {
   width: 140px;
   background-color: #f0f0f0;
   display: flex;
-  position: relative; /* CRUCIAL: Para posicionar el triángulo del dorsal */
-  flex-shrink: 0;     /* Evita que la foto se aplaste */
+  position: relative;
+  flex-shrink: 0;
 }
 
 .card-photo img {
@@ -45,111 +43,88 @@
 }
 
 .dorsal-tag {
-
   position: absolute;
-
   top: 0;
-
   right: 0;
-
-  /* 1. Lo hacemos un pelín más grande (65px) para asegurar que el "225" respire */
-
   width: 55px;
-
   height: 55px;
-
-  background-color: #002956;
-
+  background-color: var(--chivas-blue);
   clip-path: polygon(0 0, 100% 0, 100% 100%);
-
   z-index: 10;
-
 }
 
-
-
 .dorsal-tag span {
-
-  /* 2. El Truco Mágico: Creamos una "caja segura" invisible en la esquina superior derecha */
-
   position: absolute;
-
   top: 0;
-
   right: 0;
-
   width: 33px;  
-
   height: 30px;
-
- 
-
-  /* 3. Centramos el texto dentro de esta caja segura, lejos de la diagonal cortada */
-
   display: flex;
-
-  justify-content: center; /* Centra horizontalmente para que el "7" no se vaya a la orilla */
-
-  align-items: center;     /* Centra verticalmente */
-
- 
-
+  justify-content: center;
+  align-items: center;    
   color: white;
-
   font-weight: 800;
-
-  /* 4. Fuente condensada obligatoria para que los 3 números no engorden y choquen */
-
+  font-size: 1.1rem;
 }
 
 /* --- SECCIÓN DE CONTENIDO --- */
-
 .card-content {
   flex: 1;
   padding: 10px 18px;
   display: flex;
   flex-direction: column;
-  justify-content: center; /* Centra verticalmente todo el bloque de texto */
+  justify-content: center;
+  min-width: 0; /* Crucial para evitar desbordes en Flexbox */
 }
 
 .card-header {
   display: flex;
   justify-content: space-between;
-  align-items: center; /* Alineación vertical perfecta Nombre vs Minuto */
-  border-bottom: 2px solid #cd0e2c;
+  align-items: center;
+  border-bottom: 2px solid var(--chivas-red);
   margin-bottom: 8px;
   padding-bottom: 5px;
+  gap: 10px; 
 }
 
 .card-header h3 {
   margin: 0;
   color: #333;
   font-size: 1.2rem;
-  line-height: 1;
+  line-height: 1.2;
   font-weight: 700;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .minute {
   font-weight: 800;
-  color: #cd0e2c;
+  color: var(--chivas-red);
   font-size: 1.3rem;
   line-height: 1;
+  flex-shrink: 0;
 }
 
 /* --- DETALLES Y ETIQUETAS --- */
-
 .card-details p {
-  margin: 3px 0; /* Espaciado uniforme y compacto */
+  margin: 3px 0;
   font-size: 0.9rem;
   color: #555;
   line-height: 1.4;
 }
 
-/* Etiquetas (P) y (GEC) dentro del h3 */
+.truncate {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 .tag-penal {
-  color: #004D99;
+  color: var(--chivas-blue);
   font-size: 0.9rem;
   margin-left: 4px;
+  font-weight: bold;
 }
 
 .tag-gec {
@@ -159,48 +134,37 @@
   margin-left: 4px;
 }
 
-/* Barra lateral derecha decorativa */
-.card-accent {
-  position: absolute;
-  right: 0;
-  top: 0;
-  height: 100%;
-  width: 4px;
-  background-color: #cd0e2c;
-}
+/* (ELIMINAMOS LA CLASE .card-accent POR COMPLETO) */
 
-/* Ajuste Responsivo para pantallas muy pequeñas (iPhone SE, etc) */
-/* Ajuste Responsivo para Móviles (Manteniendo el diseño horizontal) */
+/* --- RESPONSIVIDAD PARA MÓVILES --- */
 @media (max-width: 600px) {
   .goal-card {
-    /* Mantenemos el diseño horizontal */
     flex-direction: row; 
     width: 100%;
-    height: 150px; /* Reducimos un poco la altura mínima */
+    min-height: 130px; 
   }
 
   .card-photo {
-    width: 100px; /* Hacemos la foto un poco más angosta para dar espacio al texto */
+    width: 95px; 
   }
 
   .card-content {
-    padding: 8px 12px; /* Reducimos el relleno interior */
+    padding: 8px 12px 8px 10px;
   }
 
-  /* Ajustamos los tamaños de texto para que no se desborden */
   .card-header h3 {
-    font-size: 1rem; 
+    font-size: 1.05rem; 
   }
 
   .minute {
-    font-size: 1.1rem;
+    font-size: 1.15rem;
   }
 
   .card-details p {
     font-size: 0.8rem;
+    margin: 2px 0; 
   }
 
-  /* Ajustamos el triángulo del dorsal para que no se vea gigante */
   .dorsal-tag {
     width: 45px;
     height: 45px;
@@ -208,7 +172,7 @@
 
   .dorsal-tag span {
     font-size: 0.9rem;
-    padding-top: 2px;
-    padding-right: 3px;
+    width: 28px;
+    height: 25px;
   }
 }
