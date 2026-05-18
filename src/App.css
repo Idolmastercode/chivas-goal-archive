@@ -10,7 +10,7 @@ html, body {
   padding: 0;
   width: 100%;
   overflow-x: hidden;
-  font-family: 'Segoe UI', 'Poppins', sans-serif; /* Tu tipografía preferida */
+  font-family: 'Segoe UI', 'Poppins', sans-serif; 
   background-color: #f5f5f5;
   color: #333a45;
 }
@@ -34,7 +34,7 @@ html, body {
 
 /* Encabezado */
 .App-header {
-  background: #0a2351; /* Azul Chivas (ejemplo) */
+  background: #0a2351; 
   color: white;
   padding: 20px 30px;
   width: 100%;
@@ -53,7 +53,6 @@ html, body {
 main {
   width: 100%;
   flex-grow: 1;
-  /* Sin max-width ni padding lateral para que las franjas toquen los bordes */
   display: flex;
   flex-direction: column;
 }
@@ -77,6 +76,7 @@ main {
 
 /* Franja de cada partido */
 .match-section {
+  /* 40px arriba y abajo. Al juntarse con otra franja, suman los 80px que quieres */
   padding: 40px 20px;
   display: flex;
   flex-direction: column;
@@ -98,7 +98,8 @@ main {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 100px; /* Tu separación elegida */
+  /* 40px de separación exacta entre tarjetas del mismo partido */
+  gap: 40px; 
   width: 100%;
 }
 
@@ -108,4 +109,19 @@ main {
   font-size: 1.1rem;
   margin-bottom: 25px;
   font-weight: 600;
+}
+
+/* ==========================================================================
+   4. RESPONSIVIDAD PARA MÓVILES
+   ========================================================================== */
+@media (max-width: 600px) {
+  .match-section {
+    /* Reducimos el padding a la mitad. Sumarán 40px visuales entre partidos */
+    padding: 20px 10px; 
+  }
+
+  .cards-wrapper {
+    /* Reducimos el gap a la mitad para las tarjetas del mismo partido */
+    gap: 20px; 
+  }
 }

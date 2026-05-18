@@ -2,9 +2,9 @@ import './GoalCard.css';
 
 const GoalCard = ({ data }) => {
   const getTag = () => {
-    if (data.tipo === 'PENAL') return ' (P)';
-    if (data.tipo === 'AUTOGOL') return ' (GEC)';
-    return '';
+    if (data.tipo === 'PENAL') return <span className="tag-penal"> (P)</span>;
+    if (data.tipo === 'AUTOGOL') return <span className="tag-gec"> (GEC)</span>;
+    return null;
   };
 
   return (
@@ -13,7 +13,6 @@ const GoalCard = ({ data }) => {
       <div className="card-photo">
         <img src={data.foto} alt={data.nombre} />
         
-        {/* El Triángulo con el número */}
         <div className="dorsal-tag">
           <span>{data.dorsal}</span>
         </div>
@@ -27,20 +26,17 @@ const GoalCard = ({ data }) => {
         
         <div className="card-details">
           {data.asistio && (
-            <p className="assist-row">
+            <p className="truncate">
               <strong>Asistió:</strong> {data.asistio}
             </p>
           )}
 
-          <p><strong>Partido:</strong> {data.partido}</p>
-          <p><strong>Estadio:</strong> {data.estadio}</p>
-          <p><strong>Competencia:</strong> {data.competencia}</p>
-          {/* Agregamos la etiqueta "Fecha:" para uniformidad */}
+          <p className="truncate"><strong>Partido:</strong> {data.partido}</p>
+          <p className="truncate"><strong>Estadio:</strong> {data.estadio}</p>
+          <p className="truncate"><strong>Competencia:</strong> {data.competencia}</p>
           <p className="date"><strong>Fecha:</strong> {data.fecha}</p>
         </div>
       </div>
-      
-      <div className="card-accent"></div>
     </div>
   );
 };

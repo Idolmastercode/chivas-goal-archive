@@ -694,7 +694,7 @@
     "dorsal": 17,
     "foto": "images/ricardomarin.jpg",
     "partido": "Tigres UANL vs Guadalajara",
-    "estadio": "Olímpico Universitario",
+    "estadio": "Universitario de la UANL",
     "competencia": "Liga MX, Apertura",
     "fecha": "02/05/2026",
     "minuto": "11",
@@ -753,5 +753,31 @@
     "minuto": "77",
     "tipo": "normal",
     "asistio": "Omar Govea"
+  },
+  {
+    "id": 59,
+    "nombre": "Santiago Sandoval",
+    "dorsal": 226,
+    "foto": "images/santiagosandoval.jpg",
+    "partido": "Cruz Azul vs Guadalajara",
+    "estadio": "Banorte",
+    "competencia": "Liga MX, Clausura",
+    "fecha": "13/05/2026",
+    "minuto": "29",
+    "tipo": "normal",
+    "asistio": null
+  },
+  {
+    "id": 60,
+    "nombre": "Ángel Sepulveda",
+    "dorsal": 20,
+    "foto": "images/angelsepulveda.jpg",
+    "partido": "Cruz Azul vs Guadalajara",
+    "estadio": "Banorte",
+    "competencia": "Liga MX, Clausura",
+    "fecha": "13/05/2026",
+    "minuto": "50",
+    "tipo": "normal",
+    "asistio": "Miguel Gómez"
   }
 ]
