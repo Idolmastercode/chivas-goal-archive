@@ -779,5 +779,18 @@
     "minuto": "50",
     "tipo": "normal",
     "asistio": "Miguel Gómez"
+  },
+    {
+    "id": 61,
+    "nombre": "Omar Govea",
+    "dorsal": 6,
+    "foto": "images/omargovea.jpg",
+    "partido": "Guadalajara vs Cruz Azul",
+    "estadio": "Jalisco",
+    "competencia": "Liga MX, Clausura",
+    "fecha": "16/05/2026",
+    "minuto": "7",
+    "tipo": "normal",
+    "asistio": "Rubén González"
   }
 ]
