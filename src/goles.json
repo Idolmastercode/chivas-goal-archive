@@ -800,12 +800,12 @@
     "partido": "Guadalajara vs Juárez",
     "estadio": "Akron",
     "competencia": "Liga MX, Apertura",
-    "fecha": "25/06/2026",
+    "fecha": "25/07/2026",
     "minuto": "90+6",
     "tipo": "normal",
     "asistio": "Ricardo Marín"
   },
-    {
+  {
     "id": 63,
     "nombre": "Roberto Alvarado",
     "dorsal": 25,
@@ -813,12 +813,12 @@
     "partido": "Puebla vs Guadalajara",
     "estadio": "Cuauhtémoc",
     "competencia": "Liga MX, Apertura",
-    "fecha": "31/06/2026",
+    "fecha": "31/07/2026",
     "minuto": "63",
     "tipo": "normal",
     "asistio": "Efraín Álvarez"
   },
-    {
+  {
     "id": 64,
     "nombre": "Roberto Alvarado",
     "dorsal": 25,
@@ -826,12 +826,12 @@
     "partido": "Los Angeles vs Guadalajara",
     "estadio": "BMO",
     "competencia": "Leagues Cup",
-    "fecha": "05/07/2026",
+    "fecha": "05/08/2026",
     "minuto": "42",
     "tipo": "normal",
     "asistio": "Bryan González"
   },
-    {
+  {
     "id": 65,
     "nombre": "Luis Rey",
     "dorsal": 16,
@@ -839,13 +839,26 @@
     "partido": "Seattle Sounders vs Guadalajara",
     "estadio": "Lumen Field",
     "competencia": "Leagues Cup",
-    "fecha": "12/07/2026",
+    "fecha": "12/08/2026",
     "minuto": "60",
     "tipo": "normal",
     "asistio": null
   },
-    {
+  {
     "id": 66,
+    "nombre": "Santiago Sandoval",
+    "dorsal": 30,
+    "foto": "images/santiagosandoval.jpg",
+    "partido": "Seattle Sounders vs Guadalajara",
+    "estadio": "Lumen Field",
+    "competencia": "Leagues Cup",
+    "fecha": "12/08/2026",
+    "minuto": "71",
+    "tipo": "normal",
+    "asistio": "Luis Romo"
+  },
+  {
+    "id": 67,
     "nombre": "Ricardo Marín",
     "dorsal": 17,
     "foto": "images/ricardomarin.jpg",
@@ -856,5 +869,70 @@
     "minuto": "75",
     "tipo": "PENAL",
     "asistio": null
-  }
+  },
+  {
+    "id": 68,
+    "nombre": "Santiago Sandoval",
+    "dorsal": 30,
+    "foto": "images/santiagosandoval.jpg",
+    "partido": "Guadalajara vs Tijuana",
+    "estadio": "Akron",
+    "competencia": "Liga MX, Apertura",
+    "fecha": "22/08/2026",
+    "minuto": "23",
+    "tipo": "normal",
+    "asistio": "Luis Romo"
+  },
+  {
+    "id": 69,
+    "nombre": "Ricardo Marín",
+    "dorsal": 17,
+    "foto": "images/ricardomarin.jpg",
+    "partido": "Guadalajara vs Tijuana",
+    "estadio": "Akron",
+    "competencia": "Liga MX, Apertura",
+    "fecha": "22/08/2026",
+    "minuto": "31",
+    "tipo": "normal",
+    "asistio": "Diego Campillo"
+  },
+   {
+    "id": 70,
+    "nombre": "Ricardo Marín",
+    "dorsal": 17,
+    "foto": "images/ricardomarin.jpg",
+    "partido": "Guadalajara vs Tijuana",
+    "estadio": "Akron",
+    "competencia": "Liga MX, Apertura",
+    "fecha": "22/08/2026",
+    "minuto": "45+2",
+    "tipo": "PENAL",
+    "asistio": null
+  }, 
+  {
+    "id": 71,
+    "nombre": "Roberto Alvarado",
+    "dorsal": 25,
+    "foto": "images/robertoalvarado.jpg",
+    "partido": "Guadalajara vs Tijuana",
+    "estadio": "Akron",
+    "competencia": "Liga MX, Apertura",
+    "fecha": "22/08/2026",
+    "minuto": "59",
+    "tipo": "normal",
+    "asistio": "Brian Gutiérrez"
+  },
+  {
+    "id": 72,
+    "nombre": "Diego Campillo",
+    "dorsal": 3,
+    "foto": "images/diegocampillo.jpg",
+    "partido": "Guadalajara vs Tijuana",
+    "estadio": "Akron",
+    "competencia": "Liga MX, Apertura",
+    "fecha": "22/08/2026",
+    "minuto": "69",
+    "tipo": "normal",
+    "asistio": "Roberto Alvarado"
+  }    
 ]
