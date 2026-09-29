@@ -38,7 +38,7 @@ const obtenerRutaFoto = (rutaOriginal, fechaStr, tipo) => {
 
 // --- ESTRUCTURA DE MENÚ INTACTA ---
 const opcionesMenu = [
-  { label: "🌎 Mostrar Histórico Completo", value: "TODO", isAction: true },
+  { label: "Mostrar Histórico Completo", value: "TODO", isAction: true },
   {
     label: "Temporada 2026-2027", 
     value: "2627-ALL",

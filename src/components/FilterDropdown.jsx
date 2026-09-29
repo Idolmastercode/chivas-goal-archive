@@ -15,6 +15,9 @@ const FilterDropdown = ({ opciones, valorSeleccionado, onSeleccionar }) => {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
+  // Función para identificar la opción activa
+  const checkIsSelected = (value) => valorSeleccionado.value === value;
+
   return (
     <div className="custom-dropdown-container" ref={dropdownRef}>
       <button 
@@ -34,14 +37,14 @@ const FilterDropdown = ({ opciones, valorSeleccionado, onSeleccionar }) => {
               
               {grupo.isAction ? (
                 <div 
-                  className="dropdown-item action-item"
+                  className={`dropdown-item action-item ${checkIsSelected(grupo.value) ? 'selected-item' : ''}`}
                   onClick={() => { onSeleccionar(grupo); setIsOpen(false); }}
                 >
                   {grupo.label}
                 </div>
               ) : (
                 <div 
-                  className="dropdown-group-title clickable-title"
+                  className={`dropdown-group-title clickable-title ${checkIsSelected(grupo.value) ? 'selected-item' : ''}`}
                   onClick={() => { onSeleccionar(grupo); setIsOpen(false); }}
                 >
                   {grupo.label}
@@ -51,7 +54,7 @@ const FilterDropdown = ({ opciones, valorSeleccionado, onSeleccionar }) => {
               {grupo.subOptions && grupo.subOptions.map((sub, j) => (
                 <div 
                   key={j} 
-                  className="dropdown-item sub-item"
+                  className={`dropdown-item sub-item ${checkIsSelected(sub.value) ? 'selected-item' : ''}`}
                   onClick={() => { onSeleccionar(sub); setIsOpen(false); }}
                 >
                   {sub.label}

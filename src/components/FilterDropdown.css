@@ -1,3 +1,6 @@
+/* =======================================
+   MENÚ DESPLEGABLE PERSONALIZADO
+   ======================================= */
 .custom-dropdown-container {
   position: relative;
   width: 250px;
@@ -22,7 +25,7 @@
 }
 
 .dropdown-button:hover, .dropdown-button.active {
-  background-color: #081d43; 
+  background-color: #04102b; /* Match con el nuevo hover profundo */
 }
 
 .chevron {
@@ -50,71 +53,78 @@
   border: 1px solid #eee;
 }
 
-.dropdown-group {
-  border-bottom: 1px solid #eee;
+/* =======================================
+   OPCIONES DEL MENÚ (BASE Y LÍNEAS)
+   ======================================= */
+.dropdown-item, .dropdown-group-title.clickable-title {
+  padding: 10px 15px;
+  font-size: 14px;
+  color: var(--color-primary);
+  background-color: white;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  border-bottom: 1px solid #e5e8ec; 
+  border-left: 3px solid transparent; 
 }
 
-.dropdown-group:last-child {
+.dropdown-group:last-child .dropdown-item:last-child {
   border-bottom: none;
 }
 
+.dropdown-item.action-item,
 .dropdown-group-title.clickable-title {
-  padding: 10px 15px;
-  font-size: 13px;
   font-weight: 700;
-  color: var(--color-primary); 
-  background-color: #f4f6f8;
-  cursor: pointer;
-  transition: background-color 0.2s;
-  border-left: 3px solid var(--color-secondary);
-}
-
-.dropdown-group-title.clickable-title:hover {
-  background-color: #e2e6ea;
-}
-
-.dropdown-item {
-  padding: 10px 15px;
-  font-size: 14px;
-  color: var(--color-text);
-  cursor: pointer;
-  transition: background-color 0.15s;
-}
-
-.dropdown-item:hover {
-  background-color: #f0f4f8;
-  color: var(--color-primary);
-}
-
-.dropdown-item.action-item {
-  font-weight: 600;
-  color: var(--color-primary);
-  text-align: center;
+  text-align: left;
 }
 
 .dropdown-item.sub-item {
-  padding-left: 30px; 
-  border-left: 3px solid transparent;
+  padding-left: 30px;
+  font-weight: 500;
+  font-size: 13.5px;
 }
 
-.dropdown-item.sub-item:hover {
+/* =======================================
+   HOVER Y SELECCIÓN (LA MAGIA VISUAL)
+   ======================================= */
+
+/* HOVER NORMAL: Azul grisáceo, letras azules, rayita roja */
+.dropdown-item:hover,
+.dropdown-group-title.clickable-title:hover {
+  background-color: #e4e9f0; 
+  color: var(--color-primary);
   border-left-color: var(--color-secondary); 
 }
 
-/* ESTADÍSTICAS RECTANGULARES */
+/* SELECCIONADO (ACTIVO): Fondo azul completo, letras blancas, rayita ROJA */
+.dropdown-item.selected-item,
+.dropdown-group-title.clickable-title.selected-item {
+  background-color: var(--color-primary) !important;
+  color: white !important;
+  border-left-color: var(--color-secondary) !important; 
+}
+
+/* HOVER SOBRE SELECCIONADO: Azul nocturno mucho más oscuro */
+.dropdown-item.selected-item:hover,
+.dropdown-group-title.clickable-title.selected-item:hover {
+  background-color: #04102b !important;
+}
+
+/* =======================================
+   ESTADÍSTICAS LADO IZQUIERDO (RECTANGULARES)
+   ======================================= */
 .stat-total-rect {
   display: flex;
   align-items: center;
   gap: 8px;
   background-color: white;
   padding: 8px 16px;
-  border-radius: 8px; /* Hace match perfecto con el menú */
+  border-radius: 8px; 
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-  height: 42px; /* Alineado a la altura del botón dropdown */
+  height: 42px; 
 }
 
 .stat-total-rect .number {
-  font-size: 20px;
+  font-size: 18px; 
   font-weight: 800;
   color: var(--color-primary);
   line-height: 1;
@@ -123,7 +133,7 @@
 .stat-total-rect .label {
   font-size: 13px;
   font-weight: 700;
-  color: var(--color-text);
+  color: var(--color-primary); 
   text-transform: uppercase;
 }
 
@@ -134,16 +144,16 @@
   display: flex;
   align-items: center;
   gap: 10px;
-  background-color: #a70a22; /* Rojo oscuro sólido para mantener la intensidad */
-  padding: 4px 15px 4px 4px; /* Padding asimétrico para abrazar el círculo de la foto */
-  border-radius: 50px; /* Geometría de píldora curva */
+  background-color: #a70a22; 
+  padding: 4px 15px 4px 4px; 
+  border-radius: 50px; 
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
 .stat-photo-circle {
   width: 42px;
   height: 42px;
-  border-radius: 50%; /* Círculo perfecto */
+  border-radius: 50%; 
   object-fit: cover;
   border: 2px solid white;
 }
@@ -172,24 +182,23 @@
 
 .stat-badge {
   background: white;
-  color: var(--color-primary); /* Azul Chivas */
+  color: var(--color-primary); 
   font-weight: 800;
   font-size: 11px;
   padding: 2px 6px;
-  border-radius: 12px; /* Badge también redondeado */
+  border-radius: 12px; 
 }
 
-/* Botón Minimalista Circular (+) */
 .btn-pro-circle {
   display: flex;
   align-items: center;
   justify-content: center;
   background-color: white;
-  color: var(--color-secondary); /* Rojo Chivas */
+  color: var(--color-secondary); 
   border: none;
   width: 48px; 
-  height: 48px; /* Exactamente igual de alto que ancho */
-  border-radius: 50%; /* Círculo perfecto */
+  height: 48px; 
+  border-radius: 50%; 
   cursor: pointer;
   transition: all 0.2s;
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
