@@ -1,9 +1,10 @@
-import React, { useMemo } from 'react';
+import React, { useMemo, useState } from 'react';
 import GoalCard from './components/GoalCard';
+import FilterDropdown from './components/FilterDropdown';
 import golesData from './goles.json';
 import './App.css'; 
 
-// --- FUNCIONES AUXILIARES ---
+// --- FUNCIONES AUXILIARES INTACTAS ---
 const parseFecha = (fechaStr) => {
   const [dia, mes, anio] = fechaStr.split('/');
   return new Date(anio, mes - 1, dia); 
@@ -18,12 +19,105 @@ const parseMinuto = (minutoStr) => {
   return parseInt(str);
 };
 
-// --- COMPONENTE PRINCIPAL ---
+const obtenerCarpetaTemporada = (fechaStr) => {
+  if (!fechaStr) return '';
+  const [dia, mes, anio] = fechaStr.split('/');
+  const mesNum = parseInt(mes, 10);
+  const anioNum = parseInt(anio, 10);
+  if (mesNum >= 7) return `${anioNum}${anioNum + 1}`; 
+  return `${anioNum - 1}${anioNum}`; 
+};
+
+const obtenerRutaFoto = (rutaOriginal, fechaStr, tipo) => {
+  if (tipo === 'AUTOGOL') return 'images/autogol.jpg';
+  if (!rutaOriginal || !fechaStr) return rutaOriginal;
+  const carpetaTemporada = obtenerCarpetaTemporada(fechaStr);
+  const nombreArchivo = rutaOriginal.split('/').pop();
+  return `images/${carpetaTemporada}/${nombreArchivo}`;
+};
+
+// --- ESTRUCTURA DE MENÚ INTACTA ---
+const opcionesMenu = [
+  { label: "🌎 Mostrar Histórico Completo", value: "TODO", isAction: true },
+  {
+    label: "Temporada 2026-2027", 
+    value: "2627-ALL",
+    temporadaFolder: "20262027",
+    subOptions: [
+      { label: "Liga MX - Apertura", value: "2627-AP", temporadaFolder: "20262027", keyword: "Apertura" },
+      { label: "Liga MX - Clausura", value: "2627-CL", temporadaFolder: "20262027", keyword: "Clausura" },
+      { label: "Leagues Cup", value: "2627-LC", temporadaFolder: "20262027", keyword: "Leagues Cup" }
+    ]
+  },
+  {
+    label: "Temporada 2025-2026", 
+    value: "2526-ALL",
+    temporadaFolder: "20252026",
+    subOptions: [
+      { label: "Liga MX - Apertura", value: "2526-AP", temporadaFolder: "20252026", keyword: "Apertura" },
+      { label: "Liga MX - Clausura", value: "2526-CL", temporadaFolder: "20252026", keyword: "Clausura" },
+      { label: "Concachampions", value: "2526-CC", temporadaFolder: "20252026", keyword: "Concachampions" }
+    ]
+  }
+];
+
 function App() {
-  
-  // LÓGICA INTACTA: Ordenamos y luego agrupamos los goles por partido
+  const [filtroActual, setFiltroActual] = useState(opcionesMenu[1]); 
+
+  const golesFiltrados = useMemo(() => {
+    if (filtroActual.value === 'TODO') return [...golesData];
+
+    return golesData.filter((gol) => {
+      const carpeta = obtenerCarpetaTemporada(gol.fecha);
+      const coincideTemporada = carpeta === filtroActual.temporadaFolder;
+      
+      if (filtroActual.keyword) {
+        return coincideTemporada && gol.competencia.includes(filtroActual.keyword);
+      }
+      return coincideTemporada;
+    });
+  }, [filtroActual]);
+
+  const stats = useMemo(() => {
+    const conteoGoles = {};
+    const conteoAsistencias = {};
+    let fotoGoleador = 'images/default.jpg';
+    let fotoAsistidor = 'images/default.jpg';
+
+    golesFiltrados.forEach(gol => {
+      if (gol.tipo !== 'AUTOGOL') {
+        conteoGoles[gol.nombre] = (conteoGoles[gol.nombre] || 0) + 1;
+      }
+      if (gol.asistio) {
+        conteoAsistencias[gol.asistio] = (conteoAsistencias[gol.asistio] || 0) + 1;
+      }
+    });
+
+    const arrGoleadores = Object.entries(conteoGoles).sort((a, b) => b[1] - a[1]);
+    const arrAsistidores = Object.entries(conteoAsistencias).sort((a, b) => b[1] - a[1]);
+
+    const topGoleador = arrGoleadores[0] || ["N/A", 0];
+    const topAsistidor = arrAsistidores[0] || ["N/A", 0];
+
+    if (topGoleador[0] !== "N/A") {
+      const registro = golesFiltrados.find(g => g.nombre === topGoleador[0]);
+      fotoGoleador = obtenerRutaFoto(registro.foto, registro.fecha, registro.tipo);
+    }
+    
+    if (topAsistidor[0] !== "N/A") {
+      const registro = golesData.find(g => g.nombre === topAsistidor[0]);
+      if (registro) fotoAsistidor = obtenerRutaFoto(registro.foto, registro.fecha, registro.tipo);
+    }
+
+    return {
+      total: golesFiltrados.length,
+      goleador: { nombre: topGoleador[0].split(' ').pop(), goles: topGoleador[1], foto: fotoGoleador },
+      asistidor: { nombre: topAsistidor[0].split(' ').pop(), asistencias: topAsistidor[1], foto: fotoAsistidor }
+    };
+  }, [golesFiltrados]);
+
   const partidosAgrupados = useMemo(() => {
-    const golesOrdenados = [...golesData].sort((a, b) => {
+    const golesOrdenados = [...golesFiltrados].sort((a, b) => {
       const fechaA = parseFecha(a.fecha);
       const fechaB = parseFecha(b.fecha);
       if (fechaA.getTime() !== fechaB.getTime()) return fechaB - fechaA; 
@@ -35,7 +129,6 @@ function App() {
 
     golesOrdenados.forEach((gol) => {
       const llavePartido = `${gol.fecha}-${gol.partido}`;
-
       if (llavePartido !== partidoActualKey) {
         grupos.push({
           id: llavePartido,
@@ -50,29 +143,66 @@ function App() {
     });
 
     return grupos;
-  }, []); 
+  }, [golesFiltrados]); 
 
   return (
-    <div className="App"> {/* 1. Usamos tu contenedor principal global */}
-      
-      {/* 2. ENCABEZADO ESTÁNDAR */}
-      {/* ENCABEZADO PRINCIPAL (AZUL) */}
+    <div className="App"> 
       <header className="App-header">
-        <h1>Historial de Goles 2026</h1>
+        <h1>Historial de Goles</h1>
       </header>
 
-      {/* FRANJA SECUNDARIA (ROJA - Igual de alta que la de Blue Archive) */}
       <div className="App-subheader">
-        {/* Aquí puedes poner botones de filtro en el futuro, texto, o dejarla vacía */}
+        <div className="subheader-content">
+          
+          {/* IZQUIERDA: LÍNEAS RECTAS (Contexto y Data) */}
+          <div className="subheader-filters">
+            <FilterDropdown 
+              opciones={opcionesMenu} 
+              valorSeleccionado={filtroActual}
+              onSeleccionar={(seleccion) => setFiltroActual(seleccion)}
+            />
+            {/* El total de goles ahora está aquí, rectangular y limpio */}
+            <div className="stat-total-rect">
+              <span className="number">{stats.total}</span>
+              <span className="label">Goles</span>
+            </div>
+          </div>
+
+          {/* DERECHA: LÍNEAS CURVAS (Jugadores y Acción) */}
+          <div className="subheader-stats">
+            
+            <div className="stat-pill-circular">
+              <img src={stats.goleador.foto} alt="Goleador" className="stat-photo-circle" />
+              <div className="stat-info">
+                <span className="label">Goleador</span>
+                <div className="name-val">{stats.goleador.nombre} <span className="stat-badge">{stats.goleador.goles}</span></div>
+              </div>
+            </div>
+
+            <div className="stat-pill-circular">
+              <img src={stats.asistidor.foto} alt="Asistidor" className="stat-photo-circle" />
+              <div className="stat-info">
+                <span className="label">Asistidor</span>
+                <div className="name-val">{stats.asistidor.nombre} <span className="stat-badge">{stats.asistidor.asistencias}</span></div>
+              </div>
+            </div>
+
+            <button className="btn-pro-circle" title="Análisis Pro">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+              </svg>
+            </button>
+
+          </div>
+
+        </div>
       </div>
 
-      {/* 3. CONTENIDO PRINCIPAL */}
       <main>
         <div className="matches-container">
           {partidosAgrupados.map((partido, index) => {
-            
             const bgClass = index % 2 === 0 ? 'bg-gris-tenue' : 'bg-blanco-roto';
-
             return (
               <div key={partido.id} className={`match-section ${bgClass}`}>
                 <div className="cards-wrapper">
@@ -86,11 +216,9 @@ function App() {
         </div>
       </main>
 
-      {/* 4. PIE DE PÁGINA ESTÁNDAR */}
       <footer className="App-footer">
         <p>&copy; {new Date().getFullYear()} Idolmastercode – Proyecto Chivas. Todos los derechos reservados.</p>
       </footer>
-
     </div>
   );
 }

@@ -1,0 +1,202 @@
+.custom-dropdown-container {
+  position: relative;
+  width: 250px;
+  font-family: var(--font-main);
+}
+
+.dropdown-button {
+  width: 100%;
+  padding: 10px 15px;
+  background-color: var(--color-primary);
+  color: var(--color-text-light);
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  text-align: left;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: all 0.2s ease;
+}
+
+.dropdown-button:hover, .dropdown-button.active {
+  background-color: #081d43; 
+}
+
+.chevron {
+  width: 20px;
+  height: 20px;
+  fill: currentColor;
+  transition: transform 0.3s ease;
+}
+
+.chevron.rotate {
+  transform: rotate(180deg);
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 110%;
+  left: 0;
+  width: 100%;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+  z-index: 100;
+  max-height: 400px;
+  overflow-y: auto;
+  border: 1px solid #eee;
+}
+
+.dropdown-group {
+  border-bottom: 1px solid #eee;
+}
+
+.dropdown-group:last-child {
+  border-bottom: none;
+}
+
+.dropdown-group-title.clickable-title {
+  padding: 10px 15px;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--color-primary); 
+  background-color: #f4f6f8;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  border-left: 3px solid var(--color-secondary);
+}
+
+.dropdown-group-title.clickable-title:hover {
+  background-color: #e2e6ea;
+}
+
+.dropdown-item {
+  padding: 10px 15px;
+  font-size: 14px;
+  color: var(--color-text);
+  cursor: pointer;
+  transition: background-color 0.15s;
+}
+
+.dropdown-item:hover {
+  background-color: #f0f4f8;
+  color: var(--color-primary);
+}
+
+.dropdown-item.action-item {
+  font-weight: 600;
+  color: var(--color-primary);
+  text-align: center;
+}
+
+.dropdown-item.sub-item {
+  padding-left: 30px; 
+  border-left: 3px solid transparent;
+}
+
+.dropdown-item.sub-item:hover {
+  border-left-color: var(--color-secondary); 
+}
+
+/* ESTADÍSTICAS RECTANGULARES */
+.stat-total-rect {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background-color: white;
+  padding: 8px 16px;
+  border-radius: 8px; /* Hace match perfecto con el menú */
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  height: 42px; /* Alineado a la altura del botón dropdown */
+}
+
+.stat-total-rect .number {
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--color-primary);
+  line-height: 1;
+}
+
+.stat-total-rect .label {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--color-text);
+  text-transform: uppercase;
+}
+
+/* =======================================
+   ESTADÍSTICAS LADO DERECHO (CIRCULARES/PÍLDORAS)
+   ======================================= */
+.stat-pill-circular {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background-color: #a70a22; /* Rojo oscuro sólido para mantener la intensidad */
+  padding: 4px 15px 4px 4px; /* Padding asimétrico para abrazar el círculo de la foto */
+  border-radius: 50px; /* Geometría de píldora curva */
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.stat-photo-circle {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%; /* Círculo perfecto */
+  object-fit: cover;
+  border: 2px solid white;
+}
+
+.stat-info {
+  display: flex;
+  flex-direction: column;
+  color: white;
+  justify-content: center;
+}
+
+.stat-info .label {
+  font-size: 10px;
+  text-transform: uppercase;
+  opacity: 0.9;
+  margin-bottom: -2px;
+}
+
+.stat-info .name-val {
+  font-size: 14px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.stat-badge {
+  background: white;
+  color: var(--color-primary); /* Azul Chivas */
+  font-weight: 800;
+  font-size: 11px;
+  padding: 2px 6px;
+  border-radius: 12px; /* Badge también redondeado */
+}
+
+/* Botón Minimalista Circular (+) */
+.btn-pro-circle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+  color: var(--color-secondary); /* Rojo Chivas */
+  border: none;
+  width: 48px; 
+  height: 48px; /* Exactamente igual de alto que ancho */
+  border-radius: 50%; /* Círculo perfecto */
+  cursor: pointer;
+  transition: all 0.2s;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.btn-pro-circle:hover {
+  transform: translateY(-2px);
+  background-color: #f8f9fa;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
