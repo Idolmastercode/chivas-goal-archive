@@ -25,7 +25,7 @@
 }
 
 .dropdown-button:hover, .dropdown-button.active {
-  background-color: #04102b; /* Match con el nuevo hover profundo */
+  background-color: #04102b; 
 }
 
 .chevron {
@@ -103,7 +103,7 @@
   border-left-color: var(--color-secondary) !important; 
 }
 
-/* HOVER SOBRE SELECCIONADO: Azul nocturno mucho más oscuro */
+/* HOVER SOBRE SELECCIONADO: Azul nocturno profundo */
 .dropdown-item.selected-item:hover,
 .dropdown-group-title.clickable-title.selected-item:hover {
   background-color: #04102b !important;
@@ -119,8 +119,10 @@
   background-color: white;
   padding: 8px 16px;
   border-radius: 8px; 
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
   height: 42px; 
+  /* Contorno disimulado */
+  border: 1px solid rgba(10, 35, 81, 0.15); 
 }
 
 .stat-total-rect .number {
@@ -144,10 +146,12 @@
   display: flex;
   align-items: center;
   gap: 10px;
-  background-color: #a70a22; 
+  background-color: white; 
   padding: 4px 15px 4px 4px; 
   border-radius: 50px; 
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  /* Contorno disimulado */
+  border: 1px solid rgba(10, 35, 81, 0.15); 
 }
 
 .stat-photo-circle {
@@ -155,20 +159,26 @@
   height: 42px;
   border-radius: 50%; 
   object-fit: cover;
-  border: 2px solid white;
+  
+  /* 1. Sube el enfoque de la foto hacia la cara (el 15% superior) */
+  object-position: center 15%; 
+  
+  /* 2. Contorno Azul Marino para resaltar la foto de fondo blanco */
+  border: 2px solid var(--color-primary); 
 }
 
 .stat-info {
   display: flex;
   flex-direction: column;
-  color: white;
   justify-content: center;
+  color: var(--color-primary); 
 }
 
 .stat-info .label {
   font-size: 10px;
   text-transform: uppercase;
-  opacity: 0.9;
+  color: var(--color-text); 
+  opacity: 0.8;
   margin-bottom: -2px;
 }
 
@@ -180,15 +190,16 @@
   gap: 6px;
 }
 
-.stat-badge {
-  background: white;
-  color: var(--color-primary); 
+/* Número limpio sin recuadro */
+.stat-number {
+  color: var(--color-secondary); 
   font-weight: 800;
-  font-size: 11px;
-  padding: 2px 6px;
-  border-radius: 12px; 
+  font-size: 15px;
 }
 
+/* =======================================
+   BOTÓN PRO (+)
+   ======================================= */
 .btn-pro-circle {
   display: flex;
   align-items: center;
@@ -201,7 +212,8 @@
   border-radius: 50%; 
   cursor: pointer;
   transition: all 0.2s;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  border: 1px solid rgba(10, 35, 81, 0.15); 
 }
 
 .btn-pro-circle:hover {

@@ -4,7 +4,6 @@ import FilterDropdown from './components/FilterDropdown';
 import golesData from './goles.json';
 import './App.css'; 
 
-// --- FUNCIONES AUXILIARES INTACTAS ---
 const parseFecha = (fechaStr) => {
   const [dia, mes, anio] = fechaStr.split('/');
   return new Date(anio, mes - 1, dia); 
@@ -36,33 +35,74 @@ const obtenerRutaFoto = (rutaOriginal, fechaStr, tipo) => {
   return `images/${carpetaTemporada}/${nombreArchivo}`;
 };
 
-// --- ESTRUCTURA DE MENÚ INTACTA ---
-const opcionesMenu = [
-  { label: "Mostrar Histórico Completo", value: "TODO", isAction: true },
-  {
-    label: "Temporada 2026-2027", 
-    value: "2627-ALL",
-    temporadaFolder: "20262027",
-    subOptions: [
-      { label: "Liga MX - Apertura", value: "2627-AP", temporadaFolder: "20262027", keyword: "Apertura" },
-      { label: "Liga MX - Clausura", value: "2627-CL", temporadaFolder: "20262027", keyword: "Clausura" },
-      { label: "Leagues Cup", value: "2627-LC", temporadaFolder: "20262027", keyword: "Leagues Cup" }
-    ]
-  },
-  {
-    label: "Temporada 2025-2026", 
-    value: "2526-ALL",
-    temporadaFolder: "20252026",
-    subOptions: [
-      { label: "Liga MX - Apertura", value: "2526-AP", temporadaFolder: "20252026", keyword: "Apertura" },
-      { label: "Liga MX - Clausura", value: "2526-CL", temporadaFolder: "20252026", keyword: "Clausura" },
-      { label: "Concachampions", value: "2526-CC", temporadaFolder: "20252026", keyword: "Concachampions" }
-    ]
-  }
-];
+// ============================================================================
+// CEREBRO DINÁMICO: CONSTRUYE EL MENÚ AUTOMÁTICAMENTE LEYENDO EL JSON
+// ============================================================================
+const generarMenuDinamico = (data) => {
+  const seasonsMap = {};
+
+  data.forEach(gol => {
+    const carpeta = obtenerCarpetaTemporada(gol.fecha); 
+    const anioInicio = carpeta.substring(0, 4);
+    const anioFin = carpeta.substring(4, 8);
+
+    if (!seasonsMap[carpeta]) {
+      seasonsMap[carpeta] = {
+        label: `Temporada ${anioInicio}-${anioFin}`,
+        value: `${carpeta}-ALL`,
+        temporadaFolder: carpeta,
+        anioInicio: parseInt(anioInicio),
+        competitions: {}
+      };
+    }
+
+    const baseComp = gol.competencia; 
+    const golDate = parseFecha(gol.fecha).getTime();
+
+    if (!seasonsMap[carpeta].competitions[baseComp]) {
+      let displayLabel = baseComp;
+      if (baseComp.includes('Apertura')) {
+        displayLabel = `Liga MX - Apertura ${anioInicio}`;
+      } else if (baseComp.includes('Clausura')) {
+        displayLabel = `Liga MX - Clausura ${anioFin}`;
+      }
+
+      seasonsMap[carpeta].competitions[baseComp] = {
+        label: displayLabel,
+        value: `${carpeta}-${baseComp.replace(/[^a-zA-Z0-9]/g, '')}`, 
+        temporadaFolder: carpeta,
+        keyword: baseComp, 
+        maxDate: golDate 
+      };
+    } else {
+      if (golDate > seasonsMap[carpeta].competitions[baseComp].maxDate) {
+        seasonsMap[carpeta].competitions[baseComp].maxDate = golDate;
+      }
+    }
+  });
+
+  const sortedSeasons = Object.values(seasonsMap).sort((a, b) => b.anioInicio - a.anioInicio);
+  const menuFinal = [{ label: "Mostrar Histórico Completo", value: "TODO", isAction: true }];
+
+  sortedSeasons.forEach(season => {
+    const sortedComps = Object.values(season.competitions).sort((a, b) => b.maxDate - a.maxDate);
+    menuFinal.push({
+      label: season.label,
+      value: season.value,
+      temporadaFolder: season.temporadaFolder,
+      subOptions: sortedComps
+    });
+  });
+
+  return menuFinal;
+};
+
+const opcionesMenuDinamicas = generarMenuDinamico(golesData);
+
+// ============================================================================
 
 function App() {
-  const [filtroActual, setFiltroActual] = useState(opcionesMenu[1]); 
+  const [filtroActual, setFiltroActual] = useState(opcionesMenuDinamicas[1] || opcionesMenuDinamicas[0]); 
 
   const golesFiltrados = useMemo(() => {
     if (filtroActual.value === 'TODO') return [...golesData];
@@ -72,7 +112,7 @@ function App() {
       const coincideTemporada = carpeta === filtroActual.temporadaFolder;
       
       if (filtroActual.keyword) {
-        return coincideTemporada && gol.competencia.includes(filtroActual.keyword);
+        return coincideTemporada && gol.competencia === filtroActual.keyword; 
       }
       return coincideTemporada;
     });
@@ -154,28 +194,27 @@ function App() {
       <div className="App-subheader">
         <div className="subheader-content">
           
-          {/* IZQUIERDA: LÍNEAS RECTAS (Contexto y Data) */}
           <div className="subheader-filters">
             <FilterDropdown 
-              opciones={opcionesMenu} 
+              opciones={opcionesMenuDinamicas} 
               valorSeleccionado={filtroActual}
               onSeleccionar={(seleccion) => setFiltroActual(seleccion)}
             />
-            {/* El total de goles ahora está aquí, rectangular y limpio */}
             <div className="stat-total-rect">
               <span className="number">{stats.total}</span>
               <span className="label">Goles</span>
             </div>
           </div>
 
-          {/* DERECHA: LÍNEAS CURVAS (Jugadores y Acción) */}
           <div className="subheader-stats">
             
             <div className="stat-pill-circular">
               <img src={stats.goleador.foto} alt="Goleador" className="stat-photo-circle" />
               <div className="stat-info">
                 <span className="label">Goleador</span>
-                <div className="name-val">{stats.goleador.nombre} <span className="stat-badge">{stats.goleador.goles}</span></div>
+                <div className="name-val">
+                  {stats.goleador.nombre} <span className="stat-number">{stats.goleador.goles}</span>
+                </div>
               </div>
             </div>
 
@@ -183,7 +222,9 @@ function App() {
               <img src={stats.asistidor.foto} alt="Asistidor" className="stat-photo-circle" />
               <div className="stat-info">
                 <span className="label">Asistidor</span>
-                <div className="name-val">{stats.asistidor.nombre} <span className="stat-badge">{stats.asistidor.asistencias}</span></div>
+                <div className="name-val">
+                  {stats.asistidor.nombre} <span className="stat-number">{stats.asistidor.asistencias}</span>
+                </div>
               </div>
             </div>
 
