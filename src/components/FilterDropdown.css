@@ -86,8 +86,6 @@
 /* =======================================
    HOVER Y SELECCIÓN (LA MAGIA VISUAL)
    ======================================= */
-
-/* HOVER NORMAL: Azul grisáceo, letras azules, rayita roja */
 .dropdown-item:hover,
 .dropdown-group-title.clickable-title:hover {
   background-color: #e4e9f0; 
@@ -95,7 +93,6 @@
   border-left-color: var(--color-secondary); 
 }
 
-/* SELECCIONADO (ACTIVO): Fondo azul completo, letras blancas, rayita ROJA */
 .dropdown-item.selected-item,
 .dropdown-group-title.clickable-title.selected-item {
   background-color: var(--color-primary) !important;
@@ -103,7 +100,6 @@
   border-left-color: var(--color-secondary) !important; 
 }
 
-/* HOVER SOBRE SELECCIONADO: Azul nocturno profundo */
 .dropdown-item.selected-item:hover,
 .dropdown-group-title.clickable-title.selected-item:hover {
   background-color: #04102b !important;
@@ -121,7 +117,6 @@
   border-radius: 8px; 
   box-shadow: 0 2px 4px rgba(0,0,0,0.05);
   height: 42px; 
-  /* Contorno disimulado */
   border: 1px solid rgba(10, 35, 81, 0.15); 
 }
 
@@ -150,7 +145,6 @@
   padding: 4px 15px 4px 4px; 
   border-radius: 50px; 
   box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-  /* Contorno disimulado */
   border: 1px solid rgba(10, 35, 81, 0.15); 
 }
 
@@ -159,11 +153,7 @@
   height: 42px;
   border-radius: 50%; 
   object-fit: cover;
-  
-  /* 1. Sube el enfoque de la foto hacia la cara (el 15% superior) */
   object-position: center 15%; 
-  
-  /* 2. Contorno Azul Marino para resaltar la foto de fondo blanco */
   border: 2px solid var(--color-primary); 
 }
 
@@ -190,7 +180,6 @@
   gap: 6px;
 }
 
-/* Número limpio sin recuadro */
 .stat-number {
   color: var(--color-secondary); 
   font-weight: 800;
@@ -198,7 +187,7 @@
 }
 
 /* =======================================
-   BOTÓN PRO (+)
+   REDISEÑO DE ANIMACIÓN: BOTÓN PRO (+)
    ======================================= */
 .btn-pro-circle {
   display: flex;
@@ -211,13 +200,73 @@
   height: 48px; 
   border-radius: 50%; 
   cursor: pointer;
-  transition: all 0.2s;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   box-shadow: 0 2px 4px rgba(0,0,0,0.05);
   border: 1px solid rgba(10, 35, 81, 0.15); 
 }
 
+.btn-pro-circle svg {
+  transition: transform 0.4s ease;
+}
+
 .btn-pro-circle:hover {
-  transform: translateY(-2px);
-  background-color: #f8f9fa;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+  background-color: var(--color-primary); 
+  color: white; 
+  border-color: var(--color-primary);
+  box-shadow: 0 4px 12px rgba(10, 35, 81, 0.3);
+}
+
+.btn-pro-circle:hover svg {
+  transform: rotate(90deg) scale(1.1); 
+}
+
+/* =======================================
+   TOOLTIPS PERSONALIZADOS (CSS PURO)
+   ======================================= */
+.with-tooltip {
+  position: relative;
+}
+
+.with-tooltip::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  top: calc(100% + 10px); 
+  left: 50%;
+  transform: translateX(-50%) translateY(-5px);
+  background-color: var(--color-primary);
+  color: white;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  pointer-events: none; 
+  z-index: 1000;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.15);
+}
+
+.with-tooltip::before {
+  content: '';
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 50%;
+  transform: translateX(-50%) translateY(-5px);
+  border-width: 0 6px 6px 6px;
+  border-style: solid;
+  border-color: transparent transparent var(--color-primary) transparent;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  pointer-events: none;
+  z-index: 1000;
+}
+
+.with-tooltip:hover::after,
+.with-tooltip:hover::before {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(0); 
 }

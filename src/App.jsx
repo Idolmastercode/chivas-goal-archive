@@ -35,9 +35,6 @@ const obtenerRutaFoto = (rutaOriginal, fechaStr, tipo) => {
   return `images/${carpetaTemporada}/${nombreArchivo}`;
 };
 
-// ============================================================================
-// CEREBRO DINÁMICO: CONSTRUYE EL MENÚ AUTOMÁTICAMENTE LEYENDO EL JSON
-// ============================================================================
 const generarMenuDinamico = (data) => {
   const seasonsMap = {};
 
@@ -99,8 +96,6 @@ const generarMenuDinamico = (data) => {
 
 const opcionesMenuDinamicas = generarMenuDinamico(golesData);
 
-// ============================================================================
-
 function App() {
   const [filtroActual, setFiltroActual] = useState(opcionesMenuDinamicas[1] || opcionesMenuDinamicas[0]); 
 
@@ -151,8 +146,18 @@ function App() {
 
     return {
       total: golesFiltrados.length,
-      goleador: { nombre: topGoleador[0].split(' ').pop(), goles: topGoleador[1], foto: fotoGoleador },
-      asistidor: { nombre: topAsistidor[0].split(' ').pop(), asistencias: topAsistidor[1], foto: fotoAsistidor }
+      goleador: { 
+        nombreCompleto: topGoleador[0],
+        nombre: topGoleador[0].split(' ').pop(), 
+        goles: topGoleador[1], 
+        foto: fotoGoleador 
+      },
+      asistidor: { 
+        nombreCompleto: topAsistidor[0],
+        nombre: topAsistidor[0].split(' ').pop(), 
+        asistencias: topAsistidor[1], 
+        foto: fotoAsistidor 
+      }
     };
   }, [golesFiltrados]);
 
@@ -208,7 +213,7 @@ function App() {
 
           <div className="subheader-stats">
             
-            <div className="stat-pill-circular">
+            <div className="stat-pill-circular with-tooltip" data-tooltip={stats.goleador.nombreCompleto}>
               <img src={stats.goleador.foto} alt="Goleador" className="stat-photo-circle" />
               <div className="stat-info">
                 <span className="label">Goleador</span>
@@ -218,7 +223,7 @@ function App() {
               </div>
             </div>
 
-            <div className="stat-pill-circular">
+            <div className="stat-pill-circular with-tooltip" data-tooltip={stats.asistidor.nombreCompleto}>
               <img src={stats.asistidor.foto} alt="Asistidor" className="stat-photo-circle" />
               <div className="stat-info">
                 <span className="label">Asistidor</span>
@@ -228,7 +233,7 @@ function App() {
               </div>
             </div>
 
-            <button className="btn-pro-circle" title="Análisis Pro">
+            <button className="btn-pro-circle with-tooltip" data-tooltip="Ver estadísticas detalladas">
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                 <line x1="12" y1="5" x2="12" y2="19"></line>
                 <line x1="5" y1="12" x2="19" y2="12"></line>
