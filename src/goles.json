@@ -1025,5 +1025,44 @@
     "minuto": "67",
     "tipo": "normal",
     "asistio": "Efraín Álvarez"
+  },
+  {
+    "id": 80,
+    "nombre": "Bryan González",
+    "dorsal": 5,
+    "foto": "images/bryangonzalez.jpg",
+    "partido": "América vs Guadalajara",
+    "estadio": "Banorte",
+    "competencia": "Liga MX, Apertura",
+    "fecha": "19/09/2026",
+    "minuto": "32",
+    "tipo": "normal",
+    "asistio": "Omar Govea"
+  },
+  {
+    "id": 81,
+    "nombre": "Ricardo Marín",
+    "dorsal": 17,
+    "foto": "images/ricardomarin.jpg",
+    "partido": "América vs Guadalajara",
+    "estadio": "Banorte",
+    "competencia": "Liga MX, Apertura",
+    "fecha": "19/09/2026",
+    "minuto": "45+2",
+    "tipo": "normal",
+    "asistio": null
+  },
+  {
+    "id": 82,
+    "nombre": "Ángel Sepulveda",
+    "dorsal": 9,
+    "foto": "images/angelsepulveda.jpg",
+    "partido": "América vs Guadalajara",
+    "estadio": "Jalisco",
+    "competencia": "Liga MX, Apertura",
+    "fecha": "10/10/2026",
+    "minuto": "86",
+    "tipo": "normal",
+    "asistio": "Brian Gutiérrez"
   }
 ]
