@@ -934,5 +934,96 @@
     "minuto": "69",
     "tipo": "normal",
     "asistio": "Roberto Alvarado"
-  }    
+  },
+  {
+    "id": 73,
+    "nombre": "Roberto Alvarado",
+    "dorsal": 25,
+    "foto": "images/robertoalvarado.jpg",
+    "partido": "Pachuca vs Guadalajara",
+    "estadio": "Hidalgo",
+    "competencia": "Liga MX, Apertura",
+    "fecha": "29/08/2026",
+    "minuto": "3",
+    "tipo": "normal",
+    "asistio": "Hugo Camberos"
+  },
+  {
+    "id": 74,
+    "nombre": "Autogol",
+    "dorsal": null,
+    "foto": "images/autogol.jpg",
+    "partido": "Atlético San Luis vs Guadalajara",
+    "estadio": "Libertad Financiera",
+    "competencia": "Liga MX, Apertura",
+    "fecha": "05/09/2026",
+    "minuto": "6",
+    "tipo": "AUTOGOL",
+    "asistio": null
+  },
+  {
+    "id": 75,
+    "nombre": "Ricardo Marín",
+    "dorsal": 17,
+    "foto": "images/ricardomarin.jpg",
+    "partido": "Atlético San Luis vs Guadalajara",
+    "estadio": "Libertad Financiera",
+    "competencia": "Liga MX, Apertura",
+    "fecha": "05/09/2026",
+    "minuto": "10",
+    "tipo": "normal",
+    "asistio": "Ángel Sepulveda"
+  },
+  {
+    "id": 76,
+    "nombre": "Richard Ledezma",
+    "dorsal": 37,
+    "foto": "images/richardledezma.jpg",
+    "partido": "Atlético San Luis vs Guadalajara",
+    "estadio": "Libertad Financiera",
+    "competencia": "Liga MX, Apertura",
+    "fecha": "05/09/2026",
+    "minuto": "80",
+    "tipo": "normal",
+    "asistio": "Ricardo Marín"
+  },
+  {
+    "id": 77,
+    "nombre": "Santiago Sandoval",
+    "dorsal": 30,
+    "foto": "images/santiagosandoval.jpg",
+    "partido": "Guadalajara vs Universidad Nacional",
+    "estadio": "Akron",
+    "competencia": "Liga MX, Apertura",
+    "fecha": "13/09/2026",
+    "minuto": "3",
+    "tipo": "normal",
+    "asistio": "Rubén González"
+  },
+  {
+    "id": 78,
+    "nombre": "Santiago Sandoval",
+    "dorsal": 30,
+    "foto": "images/santiagosandoval.jpg",
+    "partido": "Guadalajara vs Universidad Nacional",
+    "estadio": "Akron",
+    "competencia": "Liga MX, Apertura",
+    "fecha": "13/09/2026",
+    "minuto": "56",
+    "tipo": "normal",
+    "asistio": "Ángel Sepulveda"
+  },
+  {
+    "id": 79,
+    "nombre": "Bryan González",
+    "dorsal": 5,
+    "foto": "images/bryangonzalez.jpg",
+    "partido": "Guadalajara vs Universidad Nacional",
+    "estadio": "Akron",
+    "competencia": "Liga MX, Apertura",
+    "fecha": "13/09/2026",
+    "minuto": "67",
+    "tipo": "normal",
+    "asistio": "Efraín Álvarez"
+  }
 ]
